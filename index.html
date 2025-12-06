@@ -1,1027 +1,136 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>메인 페이지</title>
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RS TV - 풍성한 후가공 버전</title>
+<style>
+/* ==== 공통 스타일 ==== */
+body {
+  margin:0;
+  font-family:'Noto Sans KR', sans-serif;
+  color:#222;
+  background-color:#f9f9f9;
+  scroll-behavior: smooth;
+}
+h2,h3 {margin:0;}
+.container {max-width:1200px; margin:0 auto; padding:0 20px;}
+
+/* ==== 히어로 섹션 ==== */
+.hero {
+  height:100vh;
+  background: url('https://source.unsplash.com/1600x900/?nature,tech') no-repeat center center/cover;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; color:#fff;
+}
+.hero h1 {font-size:3rem; margin-bottom:20px; text-shadow:0 3px 6px rgba(0,0,0,0.3);}
+.hero p {font-size:1.2rem; margin-bottom:30px;}
+.hero a {padding:15px 40px; background:#fff; color:#2575fc; text-decoration:none; border-radius:10px; font-weight:700; transition:0.3s;}
+.hero a:hover {background:#f1f1f1; transform:translateY(-3px);}
+
+/* ==== 공통 카드 ==== */
+.card {background:#fff; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.08); padding:20px; margin:10px; transition:0.3s;}
+.card:hover {transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.12);}
+
+/* ==== 섹션 공통 ==== */
+section {padding:80px 0;}
+.fade-in {opacity:0; transform:translateY(20px); animation:fadeInUp 1s forwards;}
+@keyframes fadeInUp {to {opacity:1; transform:translateY(0);}}
+
+/* ==== 데이터 카드 ==== */
+.data-highlights {display:flex; flex-wrap:wrap; gap:25px; justify-content:center;}
+.data-card {flex:1 1 180px; max-width:200px; background:#f1f1f1; padding:20px; border-radius:12px; text-align:center;}
+
+/* ==== 엔딩 CTA ==== */
+.ending-cta {padding:100px 20px; background:linear-gradient(to right,#6a11cb,#2575fc); text-align:center; color:#fff;}
+.ending-cta h2 {font-size:2.5rem; margin-bottom:25px;}
+.ending-cta p {font-size:1.2rem; margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto;}
+.btn-cta {padding:16px 36px; background:#fff; color:#2575fc; font-weight:700; border-radius:10px; text-decoration:none; transition:0.2s;}
+.btn-cta:hover {background:#f1f1f1;}
+
+/* ==== 반응형 ==== */
+@media(max-width:768px){
+  .hero h1{font-size:2rem;}
+  .hero p{font-size:1rem;}
+  .data-highlights {flex-direction:column; align-items:center;}
+}
+</style>
 </head>
 <body>
-  <!-- ========== 1. 히어로 섹션 ========== -->
+
+<!-- ==== 1. 히어로 섹션 ==== -->
 <section class="hero">
-  <div class="hero-inner">
-    <h01>RS TV Test</h01>
-    <h1>인생 후반의 새로운 힘,<br> RS TV에서 시작됩니다.</h1>
-    
-    <p class="subtitle">
-      건강, 지식, 경험, 그리고 따뜻한 이야기들.<br>
-      삶을 다시 편안하게 만드는 작은 변화…<br>
-      오빠는 그 길을 함께 걷고 싶습니다.
-    </p>
-
-    <div class="cta-buttons">
-      <a href="#" class="btn dark">구독하기</a>
-      <a href="#" class="btn light">추천 영상 보기</a>
-    </div>
-  </div>
+  <h1>RS TV와 함께하는 즐거운 하루</h1>
+  <p>작은 변화가 만드는 큰 감동, 지금 바로 시작하세요</p>
+  <a href="#section2">바로 보기</a>
 </section>
 
-<style>
-  .hero {
-    width: 100%;
-    padding: 120px 20px;
-    background: linear-gradient(
-      to bottom right,
-      #0f0f0f,
-      #1a1a1a,
-      #111
-    );
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero-inner {
-    max-width: 800px;
-  }
-
-  .hero h1 {
-    font-size: 2.7rem;
-    font-weight: 700;
-    line-height: 1.35;
-    margin-bottom: 22px;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-    opacity: 0.85;
-    margin-bottom: 35px;
-    line-height: 1.7;
-  }
-
-  .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-  }
-
-  .btn {
-    padding: 14px 32px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.2s ease;
-  }
-
-  .btn.dark {
-    background: #ffffff;
-    color: #000;
-  }
-
-  .btn.dark:hover {
-    background: #e3e3e3;
-  }
-
-  .btn.light {
-    border: 1.5px solid #fff;
-    color: #fff;
-  }
-
-  .btn.light:hover {
-    opacity: 0.8;
-  }
-</style>
-  <!-- ========== 2. 브랜드 스토리 + 문제·해결 ========== -->
-<section class="story-problem">
+<!-- ==== 2. 스토리 섹션 ==== -->
+<section id="section2" class="fade-in">
   <div class="container">
-    <h2>왜 RS TV인가?</h2>
-    <p class="story">
-      살아온 시간만큼 깊어지는 고민들. 가족, 건강, 인간관계, 인생의 방향…
-      누구에게나 있지만, 누구도 쉽게 말하지 않는 이야기들.<br>
-      오빠는 어느 순간 깨달았습니다. <strong>“누군가 이 여정을 옆에서 함께 걸어줘야 한다.”</strong><br>
-      그래서 RS TV는 ‘지식 + 위로 + 실전성’을 가진 새로운 형태의 시니어·중장년 콘텐츠 채널로 태어났습니다.
-    </p>
-
-    <div class="problem-solution">
-      <div class="problem">
-        <h3>우리가 해결하고 싶은 문제들</h3>
-        <ul>
-          <li>정보는 넘쳐나지만 <strong>무엇이 맞는지 모르는 혼란</strong></li>
-          <li>시니어·중장년을 위한 <strong>실전 지식의 부족</strong></li>
-          <li>전문 정보는 많지만 <strong>실제로 적용하기 어려움</strong></li>
-          <li>영상은 많지만 <strong>마음까지 닿지 않는 콘텐츠</strong></li>
-        </ul>
-      </div>
-      <div class="solution">
-        <h3>RS TV 솔루션</h3>
-        <ul>
-          <li>쉽고, 짧고, 정확하며 마음에 남는 콘텐츠</li>
-          <li>오빠가 직접 선별한 근거 기반 건강 정보</li>
-          <li>일상 속에서 바로 실행 가능한 실전 팁</li>
-          <li>깊이 있는 인생·교양 콘텐츠</li>
-          <li>감성적이고 편안한 오빠 내레이션</li>
-        </ul>
-      </div>
-    </div>
+    <h2>RS TV 스토리</h2>
+    <p>중장년층의 생활과 건강, 트렌드를 쉽고 재미있게 전달합니다.</p>
   </div>
 </section>
 
-<style>
-  .story-problem {
-    padding: 80px 20px;
-    background-color: #f7f7f7;
-    color: #111;
-  }
+<!-- ==== 3. 카테고리 섹션 ==== -->
+<section id="section3" class="fade-in">
+  <div class="container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+    <div class="card"><h3>건강</h3><p>중장년 건강 정보</p></div>
+    <div class="card"><h3>라이프</h3><p>생활 팁과 취미</p></div>
+    <div class="card"><h3>뉴스</h3><p>트렌드 뉴스</p></div>
+  </div>
+</section>
 
-  .story-problem h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 28px;
-  }
+<!-- ==== 4. 추천영상 섹션 ==== -->
+<section id="section4" class="fade-in">
+  <div class="container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+    <div class="card"><h3>영상1</h3><p>추천 영상 내용</p></div>
+    <div class="card"><h3>영상2</h3><p>추천 영상 내용</p></div>
+  </div>
+</section>
 
-  .story-problem .story {
-    max-width: 800px;
-    margin: 0 auto 50px auto;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    text-align: center;
-  }
-
-  .problem-solution {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-  }
-
-  .problem, .solution {
-    flex: 1 1 320px;
-    max-width: 380px;
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  }
-
-  .problem h3, .solution h3 {
-    font-size: 1.4rem;
-    margin-bottom: 18px;
-    color: #222;
-  }
-
-  .problem ul, .solution ul {
-    list-style: disc inside;
-    line-height: 1.6;
-  }
-
-  .problem li strong, .solution li strong {
-    color: #e63946;
-  }
-</style>
-<!-- ========== 3. 콘텐츠 카테고리 섹션 ========== -->
-<section class="categories">
+<!-- ==== 5. 브랜딩 섹션 ==== -->
+<section id="section5" class="fade-in">
   <div class="container">
-    <h2>RS TV 콘텐츠 카테고리</h2>
-    <div class="category-cards">
-      <div class="card">
-        <h3>① 시니어 건강 가이드</h3>
-        <p>건강 루틴, 습관, 운동, 예방 정보. 바로 실천 가능한 팁으로 구성.</p>
-      </div>
-      <div class="card">
-        <h3>② 인생 지식 & 교양</h3>
-        <p>심리·세대·사회 흐름·노하우·철학을 현실감 있게 해설.</p>
-      </div>
-      <div class="card">
-        <h3>③ 감성 스토리 영상</h3>
-        <p>회고와 위로, 인생의 순간을 담은 오빠 특유의 따뜻한 내레이션 영상.</p>
-      </div>
-      <div class="card">
-        <h3>④ 1분 쇼츠</h3>
-        <p>짧지만 강력한 임팩트, 바로 적용 가능한 핵심 팁 영상.</p>
-      </div>
-    </div>
+    <h2>RS TV 브랜드</h2>
+    <p>신뢰와 재미를 동시에, RS TV만의 색깔</p>
   </div>
 </section>
 
-<style>
-  .categories {
-    padding: 80px 20px;
-    background-color: #fff;
-    color: #111;
-  }
-
-  .categories h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 50px;
-  }
-
-  .category-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-  }
-
-  .card {
-    flex: 1 1 260px;
-    max-width: 280px;
-    background-color: #f1f1f1;
-    padding: 25px 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-    text-align: center;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-  }
-
-  .card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 14px;
-    color: #222;
-  }
-
-  .card p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-  }
-  
- /* 모바일 반응형 */
-  @media (max-width: 768px) {
-    .category-cards {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-</style>
-  <!-- ========== 4. 대표 영상 큐레이션 ========== -->
-<section class="featured-videos">
+<!-- ==== 6. 제작 시스템 섹션 ==== -->
+<section id="section6" class="fade-in">
   <div class="container">
-    <h2>추천 영상</h2>
-    <div class="video-cards">
-      <div class="video-card">
-        <img src="thumbnail1.jpg" alt="시니어 7일 루틴" />
-        <h3>시니어를 위한 7일 루틴 프로젝트</h3>
-        <p>건강 루틴을 한 주 동안 체계적으로 관리하는 방법.</p>
-      </div>
-      <div class="video-card">
-        <img src="thumbnail2.jpg" alt="오늘 마음이 무거운 당신에게" />
-        <h3>오늘 마음이 무거운 당신에게</h3>
-        <p>짧지만 위로가 되는 따뜻한 영상 메시지.</p>
-      </div>
-      <div class="video-card">
-        <img src="thumbnail3.jpg" alt="인생 후반기, 반드시 알아야 할 5가지 지식" />
-        <h3>인생 후반기, 반드시 알아야 할 5가지 지식</h3>
-        <p>시니어·중장년이 꼭 챙겨야 할 실전 정보.</p>
-      </div>
-      <div class="video-card">
-        <img src="thumbnail4.jpg" alt="60·70대를 위한 1분 건강 팁" />
-        <h3>60·70대를 위한 1분 건강 팁</h3>
-        <p>짧고 강력하게 바로 적용 가능한 건강 팁.</p>
-      </div>
-    </div>
+    <h2>제작 시스템</h2>
+    <p>체계적인 프로세스와 데이터 기반 콘텐츠</p>
   </div>
 </section>
 
-<style>
-  .featured-videos {
-    padding: 80px 20px;
-    background-color: #f7f7f7;
-    color: #111;
-  }
-
-  .featured-videos h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 50px;
-  }
-
-  .video-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-  }
-
-  .video-card {
-    flex: 1 1 260px;
-    max-width: 280px;
-    background-color: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-    text-align: center;
-  }
-
-  .video-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-  }
-
-  .video-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .video-card h3 {
-    font-size: 1.2rem;
-    margin: 14px 0 8px 0;
-    color: #222;
-  }
-
-  .video-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #555;
-    padding: 0 12px 15px 12px;
-  }
-
-  /* 모바일 반응형 */
-  @media (max-width: 768px) {
-    .video-cards {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-</style>
-  <!-- ========== 5. 오빠 브랜딩 메시지 ========== -->
-<section class="branding-message">
-  <div class="container">
-    <h2>당신의 인생은 아직 길고, 아직 따뜻합니다</h2>
-    <p>
-      RS TV는 단순한 영상 채널이 아니라<br>
-      마음과 삶을 정리하고 다시 세워가는<br>
-      ‘동행(同行) 플랫폼’입니다.<br>
-      오빠와 함께라면 오늘도 한 걸음 더 편안하게.
-    </p>
-    <a href="#" class="btn-branding">RS TV 구독하기</a>
-  </div>
-</section>
-
-<style>
-  .branding-message {
-    padding: 100px 20px;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    color: #111;
-    text-align: center;
-  }
-
-  .branding-message h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 28px;
-  }
-
-  .branding-message p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
-  }
-
-  .btn-branding {
-    display: inline-block;
-    padding: 16px 36px;
-    background-color: #ffffff;
-    color: #e63946;
-    font-weight: 700;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: 0.2s ease;
-  }
-
-  .btn-branding:hover {
-    background-color: #f1f1f1;
-  }
-
-  @media (max-width: 768px) {
-    .branding-message h2 {
-      font-size: 2rem;
-    }
-    .branding-message p {
-      font-size: 1rem;
-    }
-  }
-</style>
-  <!-- ========== 6. RS TV 제작 시스템 ========== -->
-<section class="production-system">
-  <div class="container">
-    <h2>RS TV 제작 시스템</h2>
-    <p class="intro">
-      효율 + 전문성 + 일관성을 위해 구축된 자동 제작 구조
-    </p>
-
-    <div class="system-cards">
-      <div class="card">
-        <h3>① 주제 발굴</h3>
-        <p>트렌드 분석과 오빠 경험 기반 주제 선정</p>
-      </div>
-      <div class="card">
-        <h3>② 대본·나레이션 구조화</h3>
-        <p>지 실장이 텍스트와 나레이션을 최적화</p>
-      </div>
-      <div class="card">
-        <h3>③ 영상·이미지 자동 생성</h3>
-        <p>오팔로 이미지와 영상을 자동 합성</p>
-      </div>
-      <div class="card">
-        <h3>④ 썸네일 & 설명문 생성</h3>
-        <p>자동으로 분석 후 최적화</p>
-      </div>
-      <div class="card">
-        <h3>⑤ 업로드 & 최적화</h3>
-        <p>스튜디오 업로드와 데이터 기반 최적화</p>
-      </div>
-      <div class="card">
-        <h3>⑥ 데이터 분석</h3>
-        <p>시청 패턴, 성장 데이터 분석 후 개선</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-  .production-system {
-    padding: 80px 20px;
-    background-color: #f7f7f7;
-    color: #111;
-    text-align: center;
-  }
-
-  .production-system h2 {
-    font-size: 2.2rem;
-    margin-bottom: 18px;
-  }
-
-  .production-system .intro {
-    font-size: 1.1rem;
-    margin-bottom: 50px;
-    color: #555;
-  }
-
-  .system-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    justify-content: center;
-  }
-
-  .system-cards .card {
-    flex: 1 1 260px;
-    max-width: 280px;
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 22px 18px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-  }
-
-  .system-cards .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-  }
-
-  .system-cards .card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #222;
-  }
-
-  .system-cards .card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #555;
-  }
-
-  @media (max-width: 768px) {
-    .system-cards {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-</style>
-  <!-- ========== 7. 제작 과정 & 데이터 강조 ========== -->
-<section class="process-data">
+<!-- ==== 7. 프로세스 & 데이터 ==== -->
+<section id="section7" class="fade-in">
   <div class="container">
     <h2>제작 과정과 데이터 신뢰</h2>
-    <p class="intro">
-      체계적인 프로세스와 검증된 데이터로 RS TV 콘텐츠 품질을 유지합니다.
-    </p>
-
-    <div class="process-timeline">
-      <div class="step">
-        <h3>① 주제·카테고리 선정</h3>
-        <p>트렌드 + 경험 기반 주제 확정</p>
-      </div>
-      <div class="step">
-        <h3>② 대본·나레이션 작성</h3>
-        <p>텍스트 및 내레이션 구조화</p>
-      </div>
-      <div class="step">
-        <h3>③ 영상·이미지 자동 제작</h3>
-        <p>오팔 기반 영상/이미지 생성</p>
-      </div>
-      <div class="step">
-        <h3>④ 업로드·최적화</h3>
-        <p>스튜디오 업로드 + 데이터 기반 최적화</p>
-      </div>
-      <div class="step">
-        <h3>⑤ 분석 및 개선</h3>
-        <p>시청 패턴, 성장 데이터 분석 후 개선</p>
-      </div>
-    </div>
-
     <div class="data-highlights">
-      <div class="data-card">
-        <h3>시청 지속시간</h3>
-        <p>안정 상승 추세</p>
-      </div>
-      <div class="data-card">
-        <h3>영상 리치율</h3>
-        <p>특정 주제 쇼츠 고공 상승</p>
-      </div>
-      <div class="data-card">
-        <h3>반응 지수</h3>
-        <p>감성 스토리 콘텐츠 반응 강함</p>
-      </div>
-      <div class="data-card">
-        <h3>수요 추세</h3>
-        <p>시니어·중장년 실용 콘텐츠 꾸준 증가</p>
-      </div>
+      <div class="data-card"><h3>시청 지속시간</h3><p>안정 상승</p></div>
+      <div class="data-card"><h3>영상 리치율</h3><p>고공 상승</p></div>
+      <div class="data-card"><h3>반응 지수</h3><p>감성 콘텐츠 반응 강함</p></div>
+      <div class="data-card"><h3>수요 추세</h3><p>중장년 콘텐츠 증가</p></div>
     </div>
   </div>
 </section>
 
-<style>
-  .process-data {
-    padding: 80px 20px;
-    background-color: #fff;
-    color: #111;
-    text-align: center;
-  }
-
-  .process-data h2 {
-    font-size: 2.2rem;
-    margin-bottom: 18px;
-  }
-
-  .process-data .intro {
-    font-size: 1.1rem;
-    margin-bottom: 50px;
-    color: #555;
-  }
-
-  .process-timeline {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 50px;
-  }
-
-  .process-timeline .step {
-    flex: 1 1 220px;
-    max-width: 240px;
-    background-color: #f7f7f7;
-    padding: 18px;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-  }
-
-  .process-timeline .step:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-  }
-
-  .process-timeline .step h3 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #222;
-  }
-
-  .process-timeline .step p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #555;
-  }
-
-  .data-highlights {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    justify-content: center;
-  }
-
-  .data-card {
-    flex: 1 1 180px;
-    max-width: 200px;
-    background-color: #f1f1f1;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  }
-
-  .data-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #222;
-  }
-
-  .data-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #555;
-  }
-
-  @media (max-width: 768px) {
-    .process-timeline, .data-highlights {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-</style>
-  <!-- ========== 8. 엔딩 메시지 + 구독 CTA ========== -->
-<section class="ending-cta">
-  <div class="container">
-    <h2>함께 걸어가는 인생, RS TV와 함께</h2>
-    <p>
-      오늘도 작은 변화 한 걸음으로 삶을 더 편안하게.<br>
-      RS TV에서 당신만의 여정을 시작하세요.
-    </p>
-    <a href="#" class="btn-cta">RS TV 구독하기</a>
-  </div>
+<!-- ==== 8. 엔딩 CTA ==== -->
+<section class="ending-cta fade-in">
+  <h2>함께 걸어가는 인생, RS TV와 함께</h2>
+  <p>오늘도 작은 변화 한 걸음으로 삶을 더 편안하게.<br>RS TV에서 당신만의 여정을 시작하세요.</p>
+  <a href="#" class="btn-cta">RS TV 구독하기</a>
 </section>
 
-<style>
-  .ending-cta {
-    padding: 100px 20px;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: #fff;
-    text-align: center;
-  }
+<!-- ==== BGM 삽입 ==== -->
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  브라우저가 오디오를 지원하지 않습니다.
+</audio>
 
-  .ending-cta h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 25px;
-  }
-
-  .ending-cta p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
-  }
-
-  .btn-cta {
-    display: inline-block;
-    padding: 16px 36px;
-    background-color: #fff;
-    color: #2575fc;
-    font-weight: 700;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: 0.2s ease;
-  }
-
-  .btn-cta:hover {
-    background-color: #f1f1f1;
-  }
-
-  @media (max-width: 768px) {
-    .ending-cta h2 {
-      font-size: 2rem;
-    }
-    .ending-cta p {
-      font-size: 1rem;
-    }
-  }
-</style>
-  
-
-<header class="header">
-<h1>프로젝트 메인</h1>
-</header>
-
-
-<main class="container">
-<h2 class="section-title">전체 페이지</h2>
-<div class="card-grid">
-<a href="page1.html" class="card">Page 1</a>
-<a href="page2.html" class="card">Page 2</a>
-<a href="page3.html" class="card">Page 3</a>
-<a href="page4.html" class="card">Page 4</a>
-<a href="page5.html" class="card">Page 5</a>
-<a href="page6.html" class="card">Page 6</a>
-<a href="page7.html" class="card">Page 7</a>
-<a href="page8.html" class="card">Page 8</a>
-<a href="page9.html" class="card">Page 9</a>
-<a href="page10.html" class="card">Page 10</a>
-</div>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 1</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 1</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-
-
-<main class="container page-content">
-<h2>Page 1 콘텐츠</h2>
-<p>여기에 Page 1 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-/* ----------------------------- */
-.header nav .back {
-color: #fff;
-text-decoration: none;
-display: inline-block;
-margin-top: 10px;
-background: #444;
-padding: 8px 14px;
-border-radius: 6px;
-}
-.header nav .back:hover {
-background: #666;
-}
-
-
-/* ----------------------------- */
-/* 컨테이너 */
-/* ----------------------------- */
-.container {
-max-width: 1000px;
-margin: 40px auto;
-padding: 0 20px;
-}
-.section-title {
-text-align: center;
-font-size: 24px;
-margin-bottom: 30px;
-}
-
-
-/* ----------------------------- */
-/* 카드 그리드 (index 전용) */
-/* ----------------------------- */
-.card-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-gap: 20px;
-}
-
-
-.card {
-background: #ffffff;
-padding: 30px 20px;
-text-align: center;
-border-radius: 16px;
-font-size: 18px;
-font-weight: 600;
-color: #333;
-text-decoration: none;
-box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-transition: 0.25s;
-}
-.card:hover {
-transform: translateY(-6px);
-box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-
-/* ----------------------------- */
-/* 페이지 내부 콘텐츠 */
-/* ----------------------------- */
-.page-content h2 {
-font-size: 22px;
-margin-bottom: 14px;
-}
-.page-content p {
-line-height: 1.6;
-font-size: 16px;
-}
-
-
-/* ----------------------------- */
-/* 반응형 */
-/* ----------------------------- */
-@media (max-width: 600px) {
-.header h1 {
-font-size: 20px;
-}
-.card {
-padding: 22px 15px;
-font-size: 16px;
-}
-}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 1</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 1</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 1 콘텐츠</h2>
-<p>여기에 Page 1 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 2</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 2</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 2 콘텐츠</h2>
-<p>여기에 Page 2 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 3</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 3</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 3 콘텐츠</h2>
-<p>여기에 Page 3 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 4</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 4</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 4 콘텐츠</h2>
-<p>여기에 Page 4 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 5</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 5</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 5 콘텐츠</h2>
-<p>여기에 Page 5 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 6</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 6</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 6 콘텐츠</h2>
-<p>여기에 Page 6 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 7</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 7</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 7 콘텐츠</h2>
-<p>여기에 Page 7 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 8</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 8</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 8 콘텐츠</h2>
-<p>여기에 Page 8 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 9</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 9</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 9 콘텐츠</h2>
-<p>여기에 Page 9 내용이 들어갑니다.</p>
-</main>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page 10</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header class="header">
-<h1>Page 10</h1>
-<nav><a class="back" href="index.html">← 메인으로</a></nav>
-</header>
-<main class="container page-content">
-<h2>Page 10 콘텐츠</h2>
-<p>여기에 Page 10 내용이 들어갑니다.</p>
-</main>
 </body>
 </html>
