@@ -3,141 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RS TV - 완전 후가공 버전</title>
+<title>RS TV - 완전 후가공 + BGM</title>
 <style>
-/* ==== 공통 스타일 ==== */
-body {
-  margin:0;
-  font-family:'Noto Sans KR', sans-serif;
-  color:#222;
-  background-color:#f9f9f9;
-  scroll-behavior: smooth;
-}
-h1,h2,h3,p {margin:0;}
-.container {max-width:1200px; margin:0 auto; padding:0 20px;}
+body {margin:0;font-family:'Noto Sans KR',sans-serif;color:#222;background:#f9f9f9;scroll-behavior:smooth;}
+h1,h2,h3,p{margin:0;}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}
+/* 히어로 섹션 */
+.hero{position:relative;height:100vh;background:url('https://source.unsplash.com/1600x900/?nature,tech') no-repeat center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);}
+.hero h1{font-size:3rem;margin-bottom:20px;position:relative;z-index:1;text-shadow:0 3px 6px rgba(0,0,0,0.5);}
+.hero p{font-size:1.2rem;margin-bottom:30px;position:relative;z-index:1;}
+.hero a{padding:15px 40px;background:#fff;color:#2575fc;text-decoration:none;border-radius:10px;font-weight:700;transition:0.3s;position:relative;z-index:1;}
+.hero a:hover{background:#f1f1f1;transform:translateY(-3px);}
+/* 카드 */
+.card{background:#fff;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.08);padding:20px;margin:10px;transition:0.3s;}
+.card:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,0.12);}
+/* 섹션 */
+section{padding:80px 0;position:relative;}
+.fade-in{opacity:0;transform:translateY(20px);animation:fadeInUp 1s forwards;}
+@keyframes fadeInUp{to{opacity:1;transform:translateY(0);}}
 
-/* ==== 히어로 섹션 ==== */
-.hero {
-  position:relative;
-  height:100vh;
-  background: url('https://source.unsplash.com/1600x900/?nature,tech') no-repeat center center/cover;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  text-align:center; color:#fff;
-}
-.hero::after {
-  content:'';
-  position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.4);
-}
-.hero h1 {font-size:3rem; margin-bottom:20px; position:relative; z-index:1; text-shadow:0 3px 6px rgba(0,0,0,0.5);}
-.hero p {font-size:1.2rem; margin-bottom:30px; position:relative; z-index:1;}
-.hero a {padding:15px 40px; background:#fff; color:#2575fc; text-decoration:none; border-radius:10px; font-weight:700; transition:0.3s; position:relative; z-index:1;}
-.hero a:hover {background:#f1f1f1; transform:translateY(-3px);}
-
-/* ==== 공통 카드 ==== */
-.card {background:#fff; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.08); padding:20px; margin:10px; transition:0.3s;}
-.card:hover {transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.12);}
-
-/* ==== 섹션 공통 ==== */
-section {padding:80px 0; position:relative;}
-.fade-in {opacity:0; transform:translateY(20px); animation:fadeInUp 1s forwards;}
-@keyframes fadeInUp {to {opacity:1; transform:translateY(0);}}
-
-/* ==== 데이터 카드 ==== */
-.data-highlights {display:flex; flex-wrap:wrap; gap:25px; justify-content:center;}
-.data-card {flex:1 1 180px; max-width:200px; background:#f1f1f1; padding:20px; border-radius:12px; text-align:center;}
-
-/* ==== 엔딩 CTA ==== */
-.ending-cta {padding:100px 20px; background:linear-gradient(to right,#6a11cb,#2575fc); text-align:center; color:#fff;}
-.ending-cta h2 {font-size:2.5rem; margin-bottom:25px;}
-.ending-cta p {font-size:1.2rem; margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto;}
-.btn-cta {padding:16px 36px; background:#fff; color:#2575fc; font-weight:700; border-radius:10px; text-decoration:none; transition:0.2s;}
-.btn-cta:hover {background:#f1f1f1;}
-
-/* ==== 반응형 ==== */
-@media(max-width:768px){
-  .hero h1{font-size:2rem;}
-  .hero p{font-size:1rem;}
-  .data-highlights {flex-direction:column; align-items:center;}
-}
+/* 데이터 카드 */
+.data-highlights{display:flex;flex-wrap:wrap;gap:25px;justify-content:center;}
+.data-card{flex:1 1 180px;max-width:200px;background:#f1f1f1;padding:20px;border-radius:12px;text-align:center;}
+/* 엔딩 CTA */
+.ending-cta{padding:100px 20px;background:linear-gradient(to right,#6a11cb,#2575fc);text-align:center;color:#fff;}
+.ending-cta h2{font-size:2.5rem;margin-bottom:25px;}
+.ending-cta p{font-size:1.2rem;margin-bottom:40px;max-width:700px;margin-left:auto;margin-right:auto;}
+.btn-cta{padding:16px 36px;background:#fff;color:#2575fc;font-weight:700;border-radius:10px;text-decoration:none;transition:0.2s;}
+.btn-cta:hover{background:#f1f1f1;}
+@media(max-width:768px){.hero h1{font-size:2rem;}.hero p{font-size:1rem;}.data-highlights{flex-direction:column;align-items:center;}}
 </style>
 </head>
 <body>
 
-<!-- ==== 1. 히어로 섹션 ==== -->
+<!-- 1 히어로 -->
 <section class="hero">
-  <h1>RS TV와 함께하는 즐거운 하루</h1>
-  <p>작은 변화가 만드는 큰 감동, 지금 바로 시작하세요</p>
-  <a href="#section2">바로 보기</a>
+<h1>RS TV와 함께하는 즐거운 하루</h1>
+<p>작은 변화가 만드는 큰 감동, 지금 바로 시작하세요</p>
+<a href="#section2">바로 보기</a>
 </section>
 
-<!-- ==== 2. 스토리 섹션 ==== -->
+<!-- 2 스토리 -->
 <section id="section2" class="fade-in">
-  <div class="container">
-    <h2>RS TV 스토리</h2>
-    <p>중장년층의 생활과 건강, 트렌드를 쉽고 재미있게 전달합니다.</p>
-  </div>
+<div class="container">
+<h2>RS TV 스토리</h2>
+<p>중장년층의 생활과 건강, 트렌드를 쉽고 재미있게 전달합니다.</p>
+</div>
 </section>
 
-<!-- ==== 3. 카테고리 섹션 ==== -->
+<!-- 3 카테고리 -->
 <section id="section3" class="fade-in">
-  <div class="container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
-    <div class="card"><h3>건강</h3><p>중장년 건강 정보</p></div>
-    <div class="card"><h3>라이프</h3><p>생활 팁과 취미</p></div>
-    <div class="card"><h3>뉴스</h3><p>트렌드 뉴스</p></div>
-  </div>
+<div class="container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+<div class="card"><h3>건강</h3><p>중장년 건강 정보</p></div>
+<div class="card"><h3>라이프</h3><p>생활 팁과 취미</p></div>
+<div class="card"><h3>뉴스</h3><p>트렌드 뉴스</p></div>
+</div>
 </section>
 
-<!-- ==== 4. 추천영상 섹션 ==== -->
+<!-- 4 추천영상 -->
 <section id="section4" class="fade-in">
   <div class="container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
-    <div class="card"><h3>영상1</h3><p>추천 영상 내용</p></div>
-    <div class="card"><h3>영상2</h3><p>추천 영상 내용</p></div>
-  </div>
-</section>
-
-<!-- ==== 5. 브랜딩 섹션 ==== -->
-<section id="section5" class="fade-in">
-  <div class="container">
-    <h2>RS TV 브랜드</h2>
-    <p>신뢰와 재미를 동시에, RS TV만의 색깔</p>
-  </div>
-</section>
-
-<!-- ==== 6. 제작 시스템 섹션 ==== -->
-<section id="section6" class="fade-in">
-  <div class="container">
-    <h2>제작 시스템</h2>
-    <p>체계적인 프로세스와 데이터 기반 콘텐츠</p>
-  </div>
-</section>
-
-<!-- ==== 7. 프로세스 & 데이터 ==== -->
-<section id="section7" class="fade-in">
-  <div class="container">
-    <h2>제작 과정과 데이터 신뢰</h2>
-    <div class="data-highlights">
-      <div class="data-card"><h3>시청 지속시간</h3><p>안정 상승</p></div>
-      <div class="data-card"><h3>영상 리치율</h3><p>고공 상승</p></div>
-      <div class="data-card"><h3>반응 지수</h3><p>감성 콘텐츠 반응 강함</p></div>
-      <div class="data-card"><h3>수요 추세</h3><p>중장년 콘텐츠 증가</p></div>
+    <div class="card">
+      <h3><a href="https://www.youtube.com/watch?v=@clace34" target="_blank">영상1</a></h3>
+      <p>추천 영상 내용</p>
+    </div>
+    <div class="card">
+      <h3><a href="https://www.youtube.com/watch?v=@clace34" target="_blank">영상2</a></h3>
+      <p>추천 영상 내용</p>
     </div>
   </div>
 </section>
 
-<!-- ==== 8. 엔딩 CTA ==== -->
-<section class="ending-cta fade-in">
-  <h2>함께 걸어가는 인생, RS TV와 함께</h2>
-  <p>오늘도 작은 변화 한 걸음으로 삶을 더 편안하게.<br>RS TV에서 당신만의 여정을 시작하세요.</p>
-  <a href="#" class="btn-cta">RS TV 구독하기</a>
+<!-- 5 브랜딩 -->
+<section id="section5" class="fade-in">
+<div class="container">
+<h2>RS TV 브랜드</h2>
+<p>신뢰와 재미를 동시에, RS TV만의 색깔</p>
+</div>
 </section>
 
-<!-- ==== BGM 삽입 ==== -->
-<audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  브라우저가 오디오를 지원하지 않습니다.
+<!-- 6 제작 시스템 -->
+<section id="section6" class="fade-in">
+<div class="container">
+<h2>제작 시스템</h2>
+<p>체계적인 프로세스와 데이터 기반 콘텐츠</p>
+</div>
+</section>
+
+<!-- 7 프로세스 & 데이터 -->
+<section id="section7" class="fade-in">
+<div class="container">
+<h2>제작 과정과 데이터 신뢰</h2>
+<div class="data-highlights">
+<div class="data-card"><h3>시청 지속시간</h3><p>안정 상승</p></div>
+<div class="data-card"><h3>영상 리치율</h3><p>고공 상승</p></div>
+<div class="data-card"><h3>반응 지수</h3><p>감성 콘텐츠 반응 강함</p></div>
+<div class="data-card"><h3>수요 추세</h3><p>중장년 콘텐츠 증가</p></div>
+</div>
+</div>
+</section>
+
+<!-- 8 엔딩 CTA -->
+<section class="ending-cta fade-in">
+<h2>함께 걸어가는 인생, RS TV와 함께</h2>
+<p>오늘도 작은 변화 한 걸음으로 삶을 더 편안하게.<br>RS TV에서 당신만의 여정을 시작하세요.</p>
+<a href="#" class="btn-cta">RS TV 구독하기</a>
+</section>
+
+<!-- BGM 우회 적용 -->
+<audio id="bgm" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+// 클릭 한번으로 BGM 재생 (브라우저 정책 우회)
+document.addEventListener("click", function () {
+    const audio = document.getElementById("bgm");
+    audio.play().catch(()=>{});
+}, { once: true });
+</script>
 
 </body>
 </html>
