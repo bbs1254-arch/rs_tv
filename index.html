@@ -3,36 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RS TV - 완전 후가공 + BGM</title>
+<title>RS TV - 통합 후가공</title>
 <style>
 body {margin:0;font-family:'Noto Sans KR',sans-serif;color:#222;background:#f9f9f9;scroll-behavior:smooth;}
 h1,h2,h3,p{margin:0;}
 .container{max-width:1200px;margin:0 auto;padding:0 20px;}
-/* 히어로 섹션 */
 .hero{position:relative;height:100vh;background:url('https://source.unsplash.com/1600x900/?nature,tech') no-repeat center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;}
 .hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);}
 .hero h1{font-size:3rem;margin-bottom:20px;position:relative;z-index:1;text-shadow:0 3px 6px rgba(0,0,0,0.5);}
 .hero p{font-size:1.2rem;margin-bottom:30px;position:relative;z-index:1;}
 .hero a{padding:15px 40px;background:#fff;color:#2575fc;text-decoration:none;border-radius:10px;font-weight:700;transition:0.3s;position:relative;z-index:1;}
 .hero a:hover{background:#f1f1f1;transform:translateY(-3px);}
-/* 카드 */
 .card{background:#fff;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.08);padding:20px;margin:10px;transition:0.3s;}
 .card:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,0.12);}
-/* 섹션 */
 section{padding:80px 0;position:relative;}
 .fade-in{opacity:0;transform:translateY(20px);animation:fadeInUp 1s forwards;}
 @keyframes fadeInUp{to{opacity:1;transform:translateY(0);}}
-
-/* 데이터 카드 */
 .data-highlights{display:flex;flex-wrap:wrap;gap:25px;justify-content:center;}
 .data-card{flex:1 1 180px;max-width:200px;background:#f1f1f1;padding:20px;border-radius:12px;text-align:center;}
-/* 엔딩 CTA */
 .ending-cta{padding:100px 20px;background:linear-gradient(to right,#6a11cb,#2575fc);text-align:center;color:#fff;}
 .ending-cta h2{font-size:2.5rem;margin-bottom:25px;}
 .ending-cta p{font-size:1.2rem;margin-bottom:40px;max-width:700px;margin-left:auto;margin-right:auto;}
 .btn-cta{padding:16px 36px;background:#fff;color:#2575fc;font-weight:700;border-radius:10px;text-decoration:none;transition:0.2s;}
 .btn-cta:hover{background:#f1f1f1;}
-@media(max-width:768px){.hero h1{font-size:2rem;}.hero p{font-size:1rem;}.data-highlights{flex-direction:column;align-items:center;}}
+.video-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:9999;}
+.video-modal iframe{border:none;border-radius:12px;}
+@media(max-width:768px){.hero h1{font-size:2rem;}.hero p{font-size:1rem;}.data-highlights{flex-direction:column;align-items:center;}.video-modal iframe{width:90%;height:200px;}}
 </style>
 </head>
 <body>
@@ -63,16 +59,16 @@ section{padding:80px 0;position:relative;}
 
 <!-- 4 추천영상 -->
 <section id="section4" class="fade-in">
-  <div class="container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
-    <div class="card">
-      <h3><a href="https://www.youtube.com/watch?v=@clace34" target="_blank">rs_tv</a></h3>
-      <p>추천 영상 내용</p>
-    </div>
-    <div class="card">
-      <h3><a href="https://www.youtube.com/watch?v=@clace34" target="_blank">rs_tv</a></h3>
-      <p>추천 영상 내용</p>
-    </div>
-  </div>
+<div class="container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+<div class="card">
+  <h3><a href="#" onclick="openVideo('영상ID1')">영상1</a></h3>
+  <p>추천 영상 내용</p>
+</div>
+<div class="card">
+  <h3><a href="#" onclick="openVideo('영상ID2')">영상2</a></h3>
+  <p>추천 영상 내용</p>
+</div>
+</div>
 </section>
 
 <!-- 5 브랜딩 -->
@@ -111,7 +107,7 @@ section{padding:80px 0;position:relative;}
 <a href="#" class="btn-cta">RS TV 구독하기</a>
 </section>
 
-<!-- BGM 우회 적용 -->
+<!-- BGM 우회 -->
 <audio id="bgm" loop>
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
@@ -122,6 +118,25 @@ document.addEventListener("click", function () {
     const audio = document.getElementById("bgm");
     audio.play().catch(()=>{});
 }, { once: true });
+
+// 추천 영상 모달
+function openVideo(id){
+  let modal = document.createElement('div');
+  modal.className='video-modal';
+  modal.innerHTML=`<iframe width="800" height="450" src="https://www.youtube.com/embed/${id}?autoplay=1" allowfullscreen></iframe>`;
+  modal.onclick=()=>{
+    playClickSound();
+    modal.remove();
+  };
+  document.body.appendChild(modal);
+  playClickSound();
+}
+
+// 효과음 재생
+function playClickSound(){
+  let audio = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3');
+  audio.play();
+}
 </script>
 
 </body>
