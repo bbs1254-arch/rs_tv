@@ -7,6 +7,91 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- ========== 1. 히어로 섹션 ========== -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>인생 후반의 새로운 힘,<br> RS TV에서 시작됩니다.</h1>
+    <p class="subtitle">
+      건강, 지식, 경험, 그리고 따뜻한 이야기들.<br>
+      삶을 다시 편안하게 만드는 작은 변화…<br>
+      오빠는 그 길을 함께 걷고 싶습니다.
+    </p>
+
+    <div class="cta-buttons">
+      <a href="#" class="btn dark">구독하기</a>
+      <a href="#" class="btn light">추천 영상 보기</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    width: 100%;
+    padding: 120px 20px;
+    background: linear-gradient(
+      to bottom right,
+      #0f0f0f,
+      #1a1a1a,
+      #111
+    );
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-inner {
+    max-width: 800px;
+  }
+
+  .hero h1 {
+    font-size: 2.7rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 22px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-bottom: 35px;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .btn {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+
+  .btn.dark {
+    background: #ffffff;
+    color: #000;
+  }
+
+  .btn.dark:hover {
+    background: #e3e3e3;
+  }
+
+  .btn.light {
+    border: 1.5px solid #fff;
+    color: #fff;
+  }
+
+  .btn.light:hover {
+    opacity: 0.8;
+  }
+</style>
+
 <header class="header">
 <h1>프로젝트 메인</h1>
 </header>
